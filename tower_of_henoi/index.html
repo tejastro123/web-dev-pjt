@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower of Hanoi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrap">
+        <h1>Tower of Hanoi</h1>
+        <div class="stats">Moves: <span id="move-count">0</span></div>
+        
+        <div class="container">
+            <div class="tower" id="tower-1" data-tower="0"></div>
+            <div class="tower" id="tower-2" data-tower="1"></div>
+            <div class="tower" id="tower-3" data-tower="2"></div>
+        </div>
+
+        <div class="controls">
+            <button id="reset-btn">Reset Game</button>
+            <button id="solve-btn">Auto Solve</button> <p>Click a tower to play, or 'Auto Solve' to watch the algorithm.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
