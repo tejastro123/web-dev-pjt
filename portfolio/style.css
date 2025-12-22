@@ -1,0 +1,98 @@
+/* display background color black on navbar scroll */
+.navbarScroll.navbarDark {
+  background-color: black;
+}
+
+body{
+  align-items:stretch;
+}
+
+
+/* hero background image */
+.bgimage {
+  height:100vh;
+  background: url('https://www.wallpapers13.com/wp-content/uploads/2016/05/Cosmic-Vehicle-rocket-motor-space-Digital-art-fantasy-HD-Wallpapers-for-mobile-phones-and-laptops-3840x2160-1600x1200.jpg'); 
+  background-size:cover;
+  position:relative;
+}
+.service {
+  height:100vh;
+  background: url('https://img.freepik.com/premium-vector/abstract-colorful-sales-background-concept_250207-246.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1705276800&semt=ais');
+  background-size:cover;
+  position:relative;
+}
+.aboutme {
+  height:100vh;
+  background: url('https://r4.wallpaperflare.com/wallpaper/1023/915/631/nasa-space-suit-digital-art-space-wallpaper-d9b0d87dd1fadddb462798dfa0c1e69d.jpg');
+  background-size:cover;
+  
+}
+/* text css above hero image*/
+.hero_title {
+  font-size: 5rem;
+}
+.hero_desc {
+  font-size: 2rem;
+}
+
+.hero-text {
+  
+  position: absolute;
+  top: 80%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  color:crimson;
+}
+
+
+/* spacing on all sections */
+/* #about, #services, #portfolio, #contact {
+  margin-top: 4rem;
+  padding-top: 4rem;
+} */
+#contact {
+  padding-bottom: 4rem;
+  background-color: aqua;
+}
+/* about section image css */
+.imageAboutPage {
+  width: 100%;
+}
+
+
+/* services section css */
+.servicesText.card {
+  height: 280px;
+  cursor: pointer;
+}
+.servicesIcon {
+  font-size: 36px;
+  text-align: center;
+  width: 100%;
+}
+.card-title {
+  text-align: center;
+}
+.card:hover .servicesIcon {
+  color: #008000;
+}
+.servicesText:hover {
+  border: 1px solid #008000;
+}
+
+/* social media icons styling */
+.social-icons {
+  font-size: 36px;
+  cursor: pointer;
+}
+.fa-facebook:hover,.fa-instagram:hover,.fa-twitter:hover,.fa-linkedin:hover, .fa-twitch:hover {
+  color: #008000;
+}
+.fab {
+  color: #000000;
+}
+/* footer styling */
+#footer {
+  background-color: #808080;
+  text-align: center;
+}

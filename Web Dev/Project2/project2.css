@@ -1,0 +1,79 @@
+body{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 3rem;
+    background-color:darkgray;   
+}
+
+.container{
+    margin-left: 15px;
+}
+
+h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+label{
+    font-size: large;
+}
+
+form{
+    background-color:white;
+    height: 500px;
+    width: 500px;
+    box-shadow: 10px 15px 15px black ;   
+}
+
+.form_field1{
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 90px 120px;
+    column-gap: 150px;
+    row-gap: 15px;
+}
+
+.form_field2{
+    
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+   
+}
+
+#address{
+    width: 95%;
+    height: 60px;
+}
+
+.form_field3{
+    
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 90px 120px;
+    column-gap: 150px;
+    row-gap: 15px;
+   
+}
+
+
+.field{
+    width: 100%;
+}
+
+
+input{
+    border-radius: 5px;
+}
+
+.submit_button{
+  margin-left: 375px;
+}
+
+#submit{
+    background-color: orange;
+    color: antiquewhite;
+}

@@ -1,0 +1,167 @@
+html,body{
+    margin:0px;
+    padding:0px;
+    height: 100%;
+    width: 100%;
+    font: 300;
+    
+}
+
+
+.page1{
+    background-image: url(images/1_Mol7VIMGaQ_QFSiCbOuw-w.jpg);
+    min-width: 100%;
+    min-height: 100%;
+    background-size  :cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.box1{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+}
+
+.text1{
+    word-spacing: 5px;
+    font-size: 35px;
+    color: white;
+    font-weight: 300;
+    text-transform: uppercase;   
+}
+.text2{
+    font-size: 25px;
+    color: white;
+    font-weight: 300;
+    word-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.text3{
+    word-spacing: 5px;
+    font-size: 30px;
+    color: white;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+
+.description{
+    padding: 0%;
+    margin: 0%;
+    color: aliceblue;
+    background-color: black;
+    text-align: center;
+    min-height: 30%;
+    position: relative;
+    padding-top: 4%;
+    padding-bottom: 2%;
+}
+
+.description1{
+    font-size: 40px;
+}
+
+.page2{
+    display: flex;
+    width: 1263px;
+    min-height: 350px;
+    align-items: center;
+}
+
+.container{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 33% 33% 33%;
+    align-items: center;
+}
+
+
+.image1,.image2,.image3{
+    padding: 10px;
+    width: 92.5%;
+    min-height: 200px;
+    margin-left: 10px;
+    border: 1px solid red;
+}
+
+
+.image1{
+    margin-top: 50px;
+    background-image: url(images/pexels-format-1029757.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.image2{
+    margin-top: 50px;
+    background-image: url(images/pexels-cottonbro-studio-3585088.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+
+.image3{
+    margin-top: 50px;
+    background-image: url(images/pexels-pixabay-147413.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.uiux, .web ,.app {
+    text-align: center;
+    padding-top: 20%;
+    padding: 10px;
+    min-width: 70%;
+    min-height: 100px;  
+    border: 1px solid red;
+    margin-left: 10px;
+    margin-bottom:80px;
+}
+
+
+.contact{
+    padding: 0%;
+    margin: 0%;
+    gap:0px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr ;
+    align-items: center;
+    text-align: center;      
+}
+
+.conDiv{
+    text-align: center;
+    padding-top: 20%;
+    padding: 10px;
+    min-width: 70%;
+    min-height: 200px;  
+    border: 1px solid red;
+
+}
+
+.contact1{
+    background-color: darkgoldenrod;
+    color: aliceblue;
+}
+
+.contact2{
+    background-color: crimson;
+    color: aliceblue;
+}
+
+#footer{
+    background-color: black;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 100px;
+    padding: 2%;
+    color: aliceblue;
+}
+
+
+
+

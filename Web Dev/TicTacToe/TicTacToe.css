@@ -1,0 +1,53 @@
+#container{
+    background-color: darkslateblue;
+    height:100vh;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+h1{
+    color: aliceblue;
+    font-size:9vmin;
+    text-decoration: underline;
+}
+
+#playArea {
+    margin: auto;
+    height:100vmin;
+    width:70vmin;
+    border: 1vmin solid red;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.smallBoxes {
+    background-color : beige;
+    height:20vmin;
+    width:20vmin;
+    flex-direction: row;
+    border-radius: 1rem;
+    border:none;
+    margin: 1vmin;
+    font-size: 10vmin;
+}
+
+
+.hidden-initial{
+    visibility: visible;
+    height:5vh;
+    width:10vh;
+    background-color: black;
+    color: aliceblue;
+    padding:2vh;
+    font-size: 1vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,58 @@
+
+#heading{
+    margin: auto;
+    color:white;
+    background-color: blueviolet;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    word-spacing: 4px;
+}
+
+.choice{
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.choices {
+    display: flex;
+    justify-content: center;   
+    align-items: center;
+    gap: 4rem;
+    margin-top: 5rem;
+    border-radius: 50%;
+}
+    
+
+  
+.choice:hover {
+    cursor: pointer;
+    background-color: black;
+}
+
+.scoreBoard{
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.score{
+    font-weight: bold;
+    font-size: medium;
+    height: 100px;
+    width: 200px;
+    margin: 20px 0px 0px 150px;
+  
+}
+
+#num1 , #num2 {
+    height: 100px;
+    width: 50px;
+    font-size: 4rem;
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Portal</title>
+    <link rel="stylesheet" type="text/css" href="project2.css">
+</head>
+
+<body>
+    
+    <form>
+        <h1>Job Application Form</h1>
+        <div class="container">
+            <div class="form_field1">
+                
+                <div class="field">
+                        <label for="fname"> First Name </label>
+                        <input type="text" name="fname" id="fname" placeholder="Enter Your First Name">
+                    </div>
+                
+                
+                <div class="field">
+                    <label for="lname">Last Name </label>
+                    <input type="text" name="lname" id="lname" placeholder="Enter Your Last Name">
+                </div>
+               
+                
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Enter Your Mail ID">
+                </div>
+                
+                <div class="field">
+                    <label for="role">Job Role</label>
+                    <select id="role" name="role">
+                        <option>Select Job Role</option>
+                        <option value="1">Managing director</option>
+                        <option value="2">Data Analyst</option>
+                        <option value="3">Developer</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form_field2">    
+                <div class="field">
+                    <label for="address">Address</label>
+                    <textarea row="10" cols="25" name="address" id="address" placeholder="Enter Your Address"></textarea>
+                </div>
+            </div>    
+            <div class="form_field3">
+                <div class="field">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city">
+                </div>
+
+                <div class="field">
+                    <label for="pincode">Pin-Code</label>
+                    <input type="number" name="pincode" id="pincode">
+                </div>
+
+                <div class="field">
+                    <label for="startdate">Start Date</label>
+                    <input type="date" name="startDate" id="startdate">
+                </div>
+
+                <div class="field">
+                    <label for="cv">CV</label>
+                    <input type="file" name="CV" id="cv" placeholder="Upload Your CV">
+                </div>
+                
+                <div class="submit_button">
+                    <button id="submit" name="submit" type="submit">APPLY NOW!</button>
+                </div>    
+            </div>
+        </div>
+    </form>
+</body>
+</html>
