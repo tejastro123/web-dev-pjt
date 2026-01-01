@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useSearchParams } from 'react-router-dom';
+import Categories from '../components/Categories';
+import Filters from '../components/Filters';
+import './Home.css';
 
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -8,11 +11,22 @@ const Home = () => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get('search') || '';
 
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [filters, setFilters] = useState({
+    sort: '',
+    veg: false
+  });
+
   useEffect(() => {
     const fetchRestaurants = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`http://localhost:5000/api/restaurants?search=${searchQuery}`);
+        // Build query string
+        let query = `?search=${searchQuery}`;
+        if (activeCategory && activeCategory !== 'All') query += `&category=${activeCategory}`;
+        if (filters.sort) query += `&sort=${filters.sort}`;
+
+        const res = await axios.get(`http://localhost:5000/api/restaurants${query}`);
         setRestaurants(res.data);
       } catch (error) {
         console.error("Error fetching restaurants:", error);
@@ -21,38 +35,44 @@ const Home = () => {
       }
     };
     fetchRestaurants();
-  }, [searchQuery]);
+  }, [searchQuery, activeCategory, filters]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="home-container">
+      {/* Categories */}
+      <Categories activeCategory={activeCategory} onSelect={setActiveCategory} />
+
+      {/* Filters */}
+      <Filters activeFilters={filters} setFilters={setFilters} />
+
       {/* Hero / Filter Section - Simplified for MVP */}
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">Delivery Restaurants in Your City</h2>
+      <div className="home-hero">
+        <h2 className="home-title">Delivery Restaurants in Your City</h2>
       </div>
 
       {loading ? (
-        <div className="text-center py-20">Loading...</div>
+        <div className="loading-container">Loading...</div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="home-grid">
           {restaurants.map((restaurant) => (
-            <Link to={`/restaurant/${restaurant._id}`} key={restaurant._id} className="group hover:shadow-xl transition rounded-xl overflow-hidden border border-transparent hover:border-gray-200">
-              <div className="relative h-60 w-full overflow-hidden">
+            <Link to={`/restaurant/${restaurant._id}`} key={restaurant._id} className="restaurant-card">
+              <div className="card-image-container">
                 <img
                   src={restaurant.image}
                   alt={restaurant.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  className="card-image"
                 />
-                <div className="absolute bottom-4 right-4 bg-white px-2 py-1 rounded text-xs font-bold shadow">
+                <div className="delivery-time">
                   {restaurant.deliveryTime}
                 </div>
               </div>
-              <div className="p-4">
-                <div className="flex justify-between items-start mb-1">
-                  <h3 className="text-xl font-bold text-gray-900 truncate">{restaurant.name}</h3>
-                  <span className="bg-green-600 text-white text-sm px-1.5 py-0.5 rounded font-bold">{restaurant.rating} ★</span>
+              <div className="card-content">
+                <div className="card-header">
+                  <h3 className="card-title">{restaurant.name}</h3>
+                  <span className="rating-badge">{restaurant.rating} ★</span>
                 </div>
-                <p className="text-gray-500 text-sm truncate">{restaurant.cuisine}</p>
-                <div className="flex justify-between items-center mt-3 text-gray-500 text-sm">
+                <p className="cuisine-text">{restaurant.cuisine}</p>
+                <div className="card-footer">
                   <span>₹{restaurant.costForTwo} for two</span>
                 </div>
               </div>

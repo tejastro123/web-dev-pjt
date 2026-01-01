@@ -21,6 +21,7 @@ mongoose.connect(MONGO_URI)
 // Routes Blueprint
 app.use('/api/restaurants', require('./routes/restaurantRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
 
 app.get('/', (req, res) => {
   res.send('Zomato Clone API is running');

@@ -1,0 +1,141 @@
+.reviews-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.reviews-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.reviews-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1c1c1c;
+}
+
+.write-review-btn {
+  background-color: transparent;
+  color: #ef4f5f;
+  border: 1px solid #ef4f5f;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.review-form {
+  background: #f8f8f8;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.rating-select {
+  margin-bottom: 1rem;
+}
+
+.rating-select select {
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--gray-300);
+}
+
+.review-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.375rem;
+  min-height: 100px;
+  margin-bottom: 1rem;
+  resize: vertical;
+}
+
+.submit-review-btn {
+  background-color: #ef4f5f;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 1rem;
+}
+
+.cancel-btn {
+  background: none;
+  border: none;
+  color: var(--gray-500);
+  cursor: pointer;
+}
+
+.review-card {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.review-user-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.review-avatar {
+  background: var(--gray-200);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.75rem;
+}
+
+.review-meta {
+  flex: 1;
+}
+
+.review-username {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1c1c1c;
+}
+
+.review-date {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+}
+
+.review-rating {
+  background: #24963f;
+  color: white;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.review-rating.rating-4,
+.review-rating.rating-5 {
+  background: #24963f;
+}
+
+.review-rating.rating-3 {
+  background: #db7c38;
+}
+
+.review-rating.rating-1,
+.review-rating.rating-2 {
+  background: #d12020;
+}
+
+.review-text {
+  color: var(--gray-600);
+  line-height: 1.5;
+  margin-left: 3rem;
+  /* Align with text start */
+}

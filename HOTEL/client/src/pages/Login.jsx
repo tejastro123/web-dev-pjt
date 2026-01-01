@@ -1,39 +1,61 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/useAuth';
+import './Login.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Mock login
-    navigate('/');
+    try {
+      await login(email, password);
+      navigate('/');
+    } catch (err) {
+      setError(err.response?.data?.msg || 'Login failed, check credentials');
+    }
   };
 
   return (
-    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Login</h2>
-        <p className="text-gray-500 mb-8">Enter your phone number or email to continue</p>
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Login</h2>
+        <p className="login-subtitle">Enter your email and password to continue</p>
 
-        <form onSubmit={handleLogin} className="space-y-6">
-          <div>
+        {error && <p className="text-red-500 text-center mb-4" style={{ color: 'red', textAlign: 'center', marginBottom: '1rem' }}>{error}</p>}
+
+        <form onSubmit={handleLogin} className="login-form">
+          <div className="input-container">
             <input
               type="email"
               placeholder="Email"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-primary transition"
+              className="login-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
-          <button type="submit" className="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-red-600 transition">
-            Send OTP
+          <div className="input-container">
+            <input
+              type="password"
+              placeholder="Password"
+              className="login-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="login-btn">
+            Log In
           </button>
         </form>
 
-        <div className="mt-6 text-center text-gray-500 text-sm">
-          New to Zomato? <Link to="/signup" className="text-primary font-medium">Create account</Link>
+        <div className="login-footer">
+          New to Zomato? <Link to="/signup" className="create-account-link">Create account</Link>
         </div>
       </div>
     </div>

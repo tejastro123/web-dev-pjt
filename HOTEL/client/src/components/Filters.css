@@ -1,0 +1,41 @@
+.filters-container {
+  background: white;
+  padding: 0.75rem 0;
+  position: sticky;
+  top: 0;
+  /* Adjust if needed */
+  z-index: 40;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.sticky-filters {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: 0.5rem;
+  background: white;
+  color: var(--gray-500);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  margin-right: 1rem;
+}
+
+.filter-chip:hover {
+  background: var(--gray-100);
+}
+
+.filter-chip.active {
+  background: #ffebee;
+  /* Light red bg */
+  border-color: #ef4f5f;
+  color: #ef4f5f;
+}
