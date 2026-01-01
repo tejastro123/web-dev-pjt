@@ -13,21 +13,26 @@ app.use(express.json());
 const MONGODB_URI = 'mongodb://127.0.0.1:27017/zomato_clone'; // Use local for now
 
 mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 })
-.then(() => console.log('MongoDB Connected'))
-.catch(err => console.error('MongoDB connection error:', err));
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
 app.get('/', (req, res) => {
-    res.send('Zomato Clone API is running');
+  res.send('Zomato Clone API is running');
 });
 
-// Import Routes (Placeholder)
-// const restaurantRoutes = require('./routes/restaurants');
-// app.use('/api/restaurants', restaurantRoutes);
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
+const restaurantRoutes = require('./routes/restaurants');
+app.use('/api/restaurants', restaurantRoutes);
+
+const orderRoutes = require('./routes/orders');
+app.use('/api/orders', orderRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
