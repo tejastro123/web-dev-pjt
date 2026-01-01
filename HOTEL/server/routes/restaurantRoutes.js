@@ -3,6 +3,7 @@ const router = express.Router();
 const Restaurant = require('../models/Restaurant');
 const Review = require('../models/Review');
 const auth = require('../middleware/auth');
+const { validateReview } = require('../middleware/validation');
 
 // GET all restaurants (with optional search)
 router.get('/', async (req, res) => {
@@ -37,7 +38,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST a review
-router.post('/:id/reviews', auth, async (req, res) => {
+router.post('/:id/reviews', [auth, validateReview], async (req, res) => {
   try {
     const { rating, comment } = req.body;
     const restaurantId = req.params.id;

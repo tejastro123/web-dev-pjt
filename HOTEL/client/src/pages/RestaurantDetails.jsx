@@ -1,58 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useRestaurant } from '../hooks/useRestaurant';
+import { useBookmark } from '../hooks/useBookmark';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/useAuth';
-import { Star, MapPin, Clock, Bookmark, Heart } from 'lucide-react';
+import { Star, Bookmark } from 'lucide-react';
 import Reviews from '../components/Reviews';
 import './RestaurantDetails.css';
 
 const RestaurantDetails = () => {
   const { id } = useParams();
-  const [restaurant, setRestaurant] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { restaurant, loading } = useRestaurant(id);
   const { addToCart, cart, updateQuantity } = useCart();
-  const { user } = useAuth(); // Refresh user might be needed or just local state
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const { user } = useAuth();
 
+  const { isBookmarked, toggleBookmark } = useBookmark(user, restaurant?._id);
   const [activeTab, setActiveTab] = useState('Order Online');
-
-  useEffect(() => {
-    if (user && user.bookmarks && restaurant) {
-      setIsBookmarked(user.bookmarks.includes(restaurant._id));
-    }
-  }, [user, restaurant]);
-
-  const handleBookmark = async () => {
-    if (!user) {
-      import('react-hot-toast').then(({ toast }) => toast.error("Please login to bookmark"));
-      return;
-    }
-    try {
-      const res = await axios.put(`http://localhost:5000/api/user/bookmark/${id}`, {}, {
-        headers: { 'x-auth-token': localStorage.getItem('token') }
-      });
-      setIsBookmarked(res.data.bookmarks.includes(id));
-      import('react-hot-toast').then(({ toast }) => toast.success(res.data.msg));
-      // Optionally update global user context but local state is enough for UI immediate feedback
-    } catch (error) {
-      console.error("Bookmark error", error);
-    }
-  };
-
-  useEffect(() => {
-    const fetchRestaurant = async () => {
-      try {
-        const res = await axios.get(`http://localhost:5000/api/restaurants/${id}`);
-        setRestaurant(res.data);
-      } catch (error) {
-        console.error("Error fetching restaurant:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchRestaurant();
-  }, [id]);
 
   if (loading) return <div className="text-center py-20">Loading...</div>;
   if (!restaurant) return <div className="text-center py-20">Restaurant not found</div>;
@@ -218,7 +181,7 @@ const RestaurantDetails = () => {
         </div>
         <div style={{ marginTop: '1rem' }}>
           <button
-            onClick={handleBookmark}
+            onClick={toggleBookmark}
             className="bookmark-btn"
             style={{
               display: 'flex',
