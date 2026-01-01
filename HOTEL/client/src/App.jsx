@@ -1,0 +1,28 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CartProvider } from './context/CartProvider';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import RestaurantDetails from './pages/RestaurantDetails';
+import Cart from './pages/Cart';
+import Login from './pages/Login';
+
+function App() {
+  return (
+    <CartProvider>
+      <Router>
+        <div className="min-h-screen bg-white">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/restaurant/:id" element={<RestaurantDetails />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </div>
+      </Router>
+    </CartProvider>
+  );
+}
+
+export default App;
