@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
+import { toast } from 'react-hot-toast';
 import './Login.css';
 
 const Login = () => {
@@ -14,9 +15,12 @@ const Login = () => {
     e.preventDefault();
     try {
       await login(email, password);
+      toast.success("Login Successful");
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.msg || 'Login failed, check credentials');
+      const msg = err.response?.data?.msg || 'Login failed, check credentials';
+      setError(msg);
+      toast.error(msg);
     }
   };
 

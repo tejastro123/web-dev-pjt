@@ -1,0 +1,62 @@
+.skeleton-card {
+  display: block;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+  background: white;
+  height: 100%;
+}
+
+.skeleton-image {
+  height: 15rem;
+  width: 100%;
+  background-color: #f0f0f0;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-content {
+  padding: 1rem;
+}
+
+.skeleton-text {
+  background-color: #f0f0f0;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-text.title {
+  height: 1.25rem;
+  width: 70%;
+  margin-bottom: 0.75rem;
+}
+
+.skeleton-text.subtitle {
+  height: 1rem;
+  width: 50%;
+}
+
+.skeleton-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.skeleton-text.price {
+  height: 1rem;
+  width: 30%;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #f0f0f0;
+  }
+
+  50% {
+    background-color: #e0e0e0;
+  }
+
+  100% {
+    background-color: #f0f0f0;
+  }
+}

@@ -67,4 +67,27 @@ router.get('/:id/reviews', async (req, res) => {
   }
 });
 
+// Like/Unlike a Review
+router.put('/reviews/:id/like', auth, async (req, res) => {
+  try {
+    const review = await Review.findById(req.params.id);
+    if (!review) return res.status(404).json({ msg: 'Review not found' });
+
+    // Check if already liked
+    if (review.likes.includes(req.user.id)) {
+      // Unlike
+      review.likes = review.likes.filter(id => id.toString() !== req.user.id);
+    } else {
+      // Like
+      review.likes.push(req.user.id);
+    }
+
+    await review.save();
+    res.json(review.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

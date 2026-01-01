@@ -3,6 +3,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/useAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 import './Cart.css';
 
 const Cart = () => {
@@ -10,12 +11,25 @@ const Cart = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  const [address, setAddress] = React.useState('');
+  const [paymentMethod, setPaymentMethod] = React.useState('UPI');
+  const [isAddressEditing, setIsAddressEditing] = React.useState(false);
+
+  React.useEffect(() => {
+    if (user && user.address) {
+      setAddress(user.address);
+    }
+  }, [user]);
+
   const handlePlaceOrder = async () => {
     if (cart.length === 0) return;
+    if (!address) {
+      toast.error("Please provide a delivery address");
+      return;
+    }
 
-    // Simple Guest Order Logic or User Order
     const orderData = {
-      userAddress: user ? user.address || "Saved Address, City" : "Guest Address, City", // Use user address if avail
+      userAddress: address,
       restaurant: cart[0].restaurantId,
       items: cart.map(item => ({
         foodItem: item._id,
@@ -30,12 +44,12 @@ const Cart = () => {
 
     try {
       await axios.post('http://localhost:5000/api/orders', orderData);
-      alert("Order Placed Successfully!");
+      toast.success("Order Placed Successfully!");
       clearCart();
-      navigate(user ? '/profile' : '/');
+      navigate('/order-tracking');
     } catch (error) {
       console.error("Order Failed", error);
-      alert("Failed to place order.");
+      toast.error("Failed to place order.");
     }
   };
 
@@ -116,6 +130,49 @@ const Cart = () => {
         </div>
       </div>
 
+      <div className="cart-card" style={{ marginTop: '1.5rem' }}>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: '1rem', fontWeight: '600' }}>Delivery Address</h2>
+        {(!address || isAddressEditing) ? (
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <input
+              type="text"
+              placeholder="Enter full address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              style={{ flex: 1, padding: '0.75rem', border: '1px solid #ddd', borderRadius: '0.5rem' }}
+            />
+            <button onClick={() => setIsAddressEditing(false)} style={{ padding: '0 1rem', background: '#e23744', color: 'white', border: 'none', borderRadius: '0.5rem' }}>Save</button>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem', border: '1px solid #e8e8e8', borderRadius: '0.5rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <span style={{ background: '#f8f8f8', padding: '0.5rem', borderRadius: '50%' }}>🏠</span>
+              <div>
+                <p style={{ fontWeight: '500', fontSize: '0.9rem' }}>Home</p>
+                <p style={{ color: '#666', fontSize: '0.85rem' }}>{address}</p>
+              </div>
+            </div>
+            <button onClick={() => setIsAddressEditing(true)} style={{ color: '#e23744', background: 'none', border: 'none', cursor: 'pointer', fontWeight: '500' }}>CHANGE</button>
+          </div>
+        )}
+
+        <h2 style={{ fontSize: '1.2rem', margin: '1.5rem 0 1rem', fontWeight: '600' }}>Payment Method</h2>
+        <div className="payment-options" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          {['UPI', 'Credit/Debit Cards', 'Net Banking', 'Cash on Delivery'].map(method => (
+            <label key={method} style={{ display: 'flex', alignItems: 'center', gap: '1rem', padding: '1rem', border: `1px solid ${paymentMethod === method ? '#e23744' : '#e8e8e8'}`, borderRadius: '0.5rem', cursor: 'pointer', background: paymentMethod === method ? '#fff5f6' : 'white' }}>
+              <input
+                type="radio"
+                name="payment"
+                checked={paymentMethod === method}
+                onChange={() => setPaymentMethod(method)}
+                style={{ accentColor: '#e23744' }}
+              />
+              <span style={{ fontWeight: '500', color: '#1c1c1c' }}>{method}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
       <div className="place-order-sticky">
         <button
           onClick={handlePlaceOrder}
@@ -126,6 +183,5 @@ const Cart = () => {
       </div>
     </div>
   );
-}
-
+};
 export default Cart;

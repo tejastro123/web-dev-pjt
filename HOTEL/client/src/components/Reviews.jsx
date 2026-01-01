@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/useAuth';
-import { Star, User } from 'lucide-react';
+import { Star, User, Heart } from 'lucide-react';
 import './Reviews.css';
 
 const Reviews = ({ restaurantId }) => {
@@ -22,6 +22,25 @@ const Reviews = ({ restaurantId }) => {
     };
     fetchReviews();
   }, [restaurantId]);
+
+  const handleLike = async (reviewId) => {
+    if (!user) {
+      alert('Please login to like reviews');
+      return;
+    }
+    try {
+      const res = await axios.put(`http://localhost:5000/api/restaurants/reviews/${reviewId}/like`, {}, {
+        headers: { 'x-auth-token': localStorage.getItem('token') }
+      });
+      // Update local state
+      const updatedReviews = reviews.map(r =>
+        r._id === reviewId ? { ...r, likes: res.data } : r
+      );
+      setReviews(updatedReviews);
+    } catch (error) {
+      console.error("Error liking review", error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -92,6 +111,27 @@ const Reviews = ({ restaurantId }) => {
                 </div>
               </div>
               <p className="review-text">{review.comment}</p>
+              <div className="review-footer" style={{ marginTop: '0.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <button
+                  onClick={() => handleLike(review._id)}
+                  className="like-btn"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.25rem',
+                    color: review.likes && user && review.likes.includes(user._id) ? '#ef4f5f' : '#696969'
+                  }}
+                >
+                  <Heart
+                    size={16}
+                    fill={review.likes && user && review.likes.includes(user._id) ? "#ef4f5f" : "none"}
+                  />
+                  <span style={{ fontSize: '0.85rem' }}>{review.likes ? review.likes.length : 0} Likes</span>
+                </button>
+              </div>
             </div>
           ))
         )}

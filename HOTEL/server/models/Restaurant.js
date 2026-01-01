@@ -16,7 +16,10 @@ const restaurantSchema = new mongoose.Schema({
   rating: { type: Number, default: 0 },
   deliveryTime: { type: String }, // e.g., "30-40 mins"
   costForTwo: { type: Number }, // e.g., 500
+  features: [{ type: String }],
+  photos: [{ type: String }],
+  menuImages: [{ type: String }],
   menu: [foodItemSchema]
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Restaurant', restaurantSchema);

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
+import { toast } from 'react-hot-toast';
 import './Login.css'; // Reusing Login styles for consistency
 
 const Signup = () => {
@@ -21,9 +22,12 @@ const Signup = () => {
     e.preventDefault();
     try {
       await signup(formData.username, formData.email, formData.password);
+      toast.success("Account Created Successfully");
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.msg || 'Signup failed');
+      const msg = err.response?.data?.msg || 'Signup failed';
+      setError(msg);
+      toast.error(msg);
     }
   };
 

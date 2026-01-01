@@ -50,6 +50,12 @@ const Profile = () => {
           Orders
         </button>
         <button
+          className={`tab-btn ${activeTab === 'bookmarks' ? 'active' : ''}`}
+          onClick={() => setActiveTab('bookmarks')}
+        >
+          Bookmarks
+        </button>
+        <button
           className={`tab-btn ${activeTab === 'info' ? 'active' : ''}`}
           onClick={() => setActiveTab('info')}
         >
@@ -89,6 +95,31 @@ const Profile = () => {
                   </div>
                 </div>
               ))
+            )}
+          </div>
+        )}
+
+        {activeTab === 'bookmarks' && (
+          <div className="bookmarks-list">
+            <h2 className="section-title">My Bookmarks</h2>
+            {user?.bookmarks && user.bookmarks.length > 0 ? (
+              <div className="bookmarks-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
+                {user.bookmarks.map(rest => (
+                  <div key={rest._id} className="bookmark-card" style={{ border: '1px solid #eee', borderRadius: '0.5rem', overflow: 'hidden' }}>
+                    <img src={rest.image} alt={rest.name} style={{ width: '100%', height: '150px', objectFit: 'cover' }} />
+                    <div style={{ padding: '1rem' }}>
+                      <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>{rest.name}</h3>
+                      <p style={{ color: '#666', fontSize: '0.9rem' }}>{rest.cuisine}</p>
+                      <div style={{ marginTop: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ background: '#239b56', color: 'white', padding: '0.1rem 0.4rem', borderRadius: '0.3rem', fontSize: '0.8rem' }}>{rest.rating} ★</span>
+                        <span style={{ fontSize: '0.9rem', color: '#333' }}>₹{rest.costForTwo} for two</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="no-orders text-gray-500">No bookmarks yet.</p>
             )}
           </div>
         )}

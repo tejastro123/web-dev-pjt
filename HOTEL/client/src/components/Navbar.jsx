@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, ShoppingCart, User, Menu } from 'lucide-react';
 import { useAuth } from '../context/useAuth';
+import { useLocation } from '../context/LocationContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { user, logout } = useAuth();
+  const { city, detectLocation } = useLocation();
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -27,9 +29,9 @@ const Navbar = () => {
 
           {/* Search Bar - Desktop */}
           <div className="search-bar-desktop">
-            <div className="location-container">
+            <div className="location-container" onClick={detectLocation} style={{ cursor: 'pointer' }}>
               <MapPin className="location-icon" />
-              <span className="location-text">Location</span>
+              <span className="location-text">{city}</span>
             </div>
             <Search className="search-icon" />
             <form onSubmit={handleSearch} className="search-form">

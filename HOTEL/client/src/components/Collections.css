@@ -1,0 +1,111 @@
+.collections-section {
+  margin-bottom: 3rem;
+  background-color: #f8f8f800;
+  /* Transparent or light gray if needed */
+}
+
+.collections-header {
+  margin-bottom: 1.5rem;
+}
+
+.collections-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #1c1c1c;
+  margin-bottom: 0.25rem;
+}
+
+.collections-subtitle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.collections-subtitle {
+  font-size: 1rem;
+  color: #363636;
+  font-weight: 300;
+}
+
+.collections-link {
+  color: #ff3f6c;
+  /* Zomato Red-ish */
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .collections-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.collection-card {
+  position: relative;
+  height: 320px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.collection-card:hover {
+  transform: translateY(-4px);
+  /* Slight lift */
+}
+
+.collection-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collection-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.collection-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color: white;
+  width: 100%;
+}
+
+.collection-card-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.collection-places {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 400;
+}
